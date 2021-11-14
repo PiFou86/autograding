@@ -8740,7 +8740,7 @@ function parseNonShell(parsed) {
 
         parsed.args = ['/d', '/s', '/c', `"${shellCommand}"`];
         parsed.command = process.env.comspec || 'cmd.exe';
-        parsed.options.windowsVerbatimArguments = true; // Tell node's spawn that the arguments are already escaped
+        parsed.options.windowsVerbatimArguments = true; // Tell node's that the arguments are already escaped
     }
 
     return parsed;
@@ -11359,6 +11359,7 @@ const runCommand = async (test, cwd, timeout) => {
         cwd,
         shell: true,
         env: {
+	    DOTNET_CLI_HOME: process.env['DOTNET_CLI_HOME'],
             PATH: process.env['PATH'],
             FORCE_COLOR: 'true',
         },
