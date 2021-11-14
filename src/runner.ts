@@ -125,13 +125,16 @@ const runSetup = async (test: Test, cwd: string, timeout: number): Promise<void>
 }
 
 const runCommand = async (test: Test, cwd: string, timeout: number): Promise<void> => {
+  var env =  {
+      PATH: process.env['PATH'],
+      FORCE_COLOR: 'true',
+    }
+  var env2 = Object.assign({}, process.env);
+  env2 = Object.assign(env2, process.env);
   const child = spawn(test.run, {
     cwd,
     shell: true,
-    env: {
-      PATH: process.env['PATH'],
-      FORCE_COLOR: 'true',
-    },
+    env: env2,
   })
 
   let output = ''
